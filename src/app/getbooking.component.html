@@ -1,0 +1,35 @@
+<p>getbooking works!</p>
+<label>
+    Enter Booking Id:
+    <input type="text" [formControl]="bookingId">
+  </label>
+  
+  
+  
+  <p>
+    Value: {{ bookingId.value }}
+  </p>
+  
+  
+  <p>
+    <button (click)="GetBookingId()">Get Details</button>
+  </p>
+  
+  <div id="date">
+      {{now | date:'longDate'}}
+  </div>
+  <table>
+    <tr>
+      <th>Booking Date</th>
+      <th>Meal Type</th>
+      <th>Plate Count</th>
+    </tr>
+    <tr *ngFor="let data of bookingDetails; index as i">
+      <td>{{data.first_name}}</td>
+      <td>{{data.email}}</td>
+      <td>{{data.id | formatPlateCount}}</td>
+    </tr>
+</table>
+<div *ngIf="errorMessage== true">
+    Reservation for booking is {{bookingId.value}} is doesn't exists
+</div>
