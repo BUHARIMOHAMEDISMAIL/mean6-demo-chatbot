@@ -1,0 +1,51 @@
+<p>buffetbooking works!</p>
+<form [formGroup]="buffetBookingForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Buffet Name</label>
+            <select formControlName="buffetName" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.buffetName.errors }">
+                <option value="" disabled="disabled" selected>Select a Buffet</option>
+                <option value="South Indian Festival Special">South Indian Festival Special</option>
+                <option value="North Indian Festival Special">North Indian Festival Special</option>
+                <option value="Chinese Special">Chinese Special</option>
+            </select>
+            <div *ngIf="submitted && formControls.buffetName.errors" class="invalid-feedback">
+                <div *ngIf="formControls.buffetName.errors.required">buffetName is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>EmailId</label>
+            <input type="text" formControlName="emailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.emailId.errors }" />
+            <div *ngIf="submitted && formControls.emailId.errors" class="invalid-feedback">
+                <div *ngIf="formControls.emailId.errors.required">Email is required</div>
+                <div *ngIf="formControls.emailId.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Number of Plates</label>
+            <input type="number" formControlName="plateCount" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.plateCount.errors }" />
+            <div *ngIf="submitted && formControls.plateCount.errors" class="invalid-feedback">
+                <div *ngIf="formControls.plateCount.errors.required">plate Count is required</div>
+                <div *ngIf="formControls.plateCount.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Booking Date</label>
+            <input type="date" formControlName="bookedOn" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.bookedOn.errors }" />
+            <div *ngIf="submitted && formControls.bookedOn.errors" class="invalid-feedback">
+                <div *ngIf="formControls.bookedOn.errors.required">plate Count is required</div>
+                <div *ngIf="formControls.bookedOn.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary mr-1" [disabled]="buffetBookingForm.status == 'INVALID'">Book Buffet {{buffetBookingForm.status}}</button>
+        <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button> -->
+    </div>
+    <!-- <div *ngIf="formId != '"> -->
+        <!-- <p>Buffet booked with id {{formId}}</p> -->
+    <!-- </div>  -->
+</form>
+    <div *ngIf="successMessage != ''"> 
+        <p>Buffet booked with id {{successMessage}}</p>
+    </div> 
